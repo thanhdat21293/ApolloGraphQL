@@ -15,6 +15,8 @@ const typeDefs = `
   type Query {
     posts: [Post]
     author(id: Int!): Author
+    postById(id: Int!): Post
+    postsByText(title: String!): [Post]
   }
   # this schema allows the following mutation:
   type Mutation {
@@ -45,6 +47,16 @@ const resolvers = {
             author: (abc, {id}) => {
                 console.log(abc);
                 return lodash.find(authors, {id: id});
+            },
+            postById: (_, {id}) => lodash.find(posts, {id: id}),
+            postsByText: (_, {title}) => {
+                let arr = [];
+                posts.map(item => {
+                    if(item.title.indexOf(title) >= 0) {
+                        arr.push(item)
+                    }
+                });
+                return arr;
             }
         },
 

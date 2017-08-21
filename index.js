@@ -12,10 +12,14 @@ const PORT = 3000;
 
 const app = express();
 
+app.use(bodyParser.json()); // get information from html forms
+app.use(bodyParser.urlencoded({extended: true}));
+
 var myGraphQLSchema = buildSchema(`
   type Query {
     hello: String,
-    add (a: Int, b: Int): Int
+    add (a: Int, b: Int): Int,
+    minus (a: Int, b: Int): Int
   }
 `);
 
@@ -24,12 +28,50 @@ var root = {
     //ở đây add: (a, b) => { } là không đúng đâu đấy. params là đối tượng chưa tất
     add: (params) => {
         return params.a + params.b;
+    },
+    minus: (params) => {
+        return params.a - params.b;
     }
 };
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({schema: myGraphQLSchema, rootValue: root}));
+app.use('/graphql', bodyParser.json(),  graphqlExpress({schema: myGraphQLSchema, rootValue: root}));
 
-app.use('/graphiql', graphiqlExpress({
+app.use('/graphiql',graphiqlExpress({
     endpointURL: '/graphql',
 }));
+
+
+app.get('/hello1', graphqlExpress({schema: myGraphQLSchema, rootValue: root}));
+app.post('/add1', graphqlExpress({schema: myGraphQLSchema, rootValue: root}));
+
+
+
+
+
+app.get('/hello', (req, res) => {
+    res.json({hello: root.hello()});
+});
+
+app.post('/add', (req, res) => {
+    res.json({add: root.add({a: parseInt(req.body.a), b: parseInt(req.body.b)})})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(PORT);
