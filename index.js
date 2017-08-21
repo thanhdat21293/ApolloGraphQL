@@ -54,7 +54,7 @@ app.get('/hello', (req, res) => {
 
 app.post('/add', (req, res) => {
     res.json({add: root.add({a: parseInt(req.body.a), b: parseInt(req.body.b)})})
-});
+})
 
 
 
