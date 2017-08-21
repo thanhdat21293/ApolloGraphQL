@@ -1,0 +1,27 @@
+{
+  "name": "apollograph",
+  "version": "1.0.0",
+  "description": "Demo Apollo GraphQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-version": "babel --version"
+  },
+  "keywords": [
+    "GraphQL"
+  ],
+  "author": "Trinh Minh Cuong",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^1.1.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "graphql": "^0.10.5",
+    "graphql-server-express": "^1.1.0",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0"
+  }
+}
