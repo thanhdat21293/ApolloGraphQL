@@ -9,7 +9,7 @@ const { graphiqlExpress } = require('graphql-server-express');
 //const { buildSchema } = require('graphql');
 const {makeExecutableSchema}  = require('graphql-tools');
 
-const PORT = 3000;
+const PORT = 3000
 
 
 const app = express();

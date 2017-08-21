@@ -50,7 +50,7 @@ const resolvers = {
             },
             postById: (_, {id}) => lodash.find(posts, {id: id}),
             postsByText: (_, {title}) => {
-                let arr = [];
+                let arr = []
                 posts.map(item => {
                     if(item.title.indexOf(title) >= 0) {
                         arr.push(item)
